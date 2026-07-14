@@ -32,7 +32,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/1d774f37-52ad-40cb-ad4b-629b0b29dfc2/query",
+        "url": "https://api.notion.com/v1/databases/3aa031fa-b83f-4f5e-9146-3f7ec1d3def5/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -101,7 +101,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/4d5a5ac4-f3da-40cd-ab81-fd4551f15f75/query",
+        "url": "https://api.notion.com/v1/databases/070cbcdb-2d03-47c0-9953-42919515aa73/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -170,7 +170,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/b4277f33-a0d4-443c-bf7f-db7476d3ab58/query",
+        "url": "https://api.notion.com/v1/databases/6a50fc10-8a28-4b7f-9aa5-b6838116980b/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -239,7 +239,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/3aec96aa-784d-4ab4-a041-d8798dccd4ba/query",
+        "url": "https://api.notion.com/v1/databases/b6c3224c-def1-40e8-ad61-fe6d1230ba78/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -308,7 +308,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/3e6a0db0-e97c-4f6e-a0bf-44a3f60286c6/query",
+        "url": "https://api.notion.com/v1/databases/c9c4834e-bd41-4dfe-b7f2-217cd4a894be/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -377,7 +377,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/1dc933f5-dcc3-4a5f-beb8-ebdee4c74602/query",
+        "url": "https://api.notion.com/v1/databases/a497c56e-993b-4dcd-b935-ab9a207075ec/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -446,7 +446,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/08251fe1-1f47-45a1-87a0-22572b50418e/query",
+        "url": "https://api.notion.com/v1/databases/5c5a9a29-4fa4-4446-90cd-4d1fcb0da63a/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -515,7 +515,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/f5e95fe6-2955-4ffb-891d-8d22d94b38a5/query",
+        "url": "https://api.notion.com/v1/databases/5f690d5e-d056-44ca-b716-eeab25b872fa/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -584,7 +584,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/2f2a74a5-b27c-4a1e-99b5-99e9f9f69560/query",
+        "url": "https://api.notion.com/v1/databases/d2aaea6b-ac4e-48fb-91a7-6910c5bc904e/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -680,7 +680,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.notion.com/v1/databases/f7f88870-6888-4e6f-a8b1-a486eef42387/query",
+        "url": "https://api.notion.com/v1/databases/5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c/query",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -719,7 +719,7 @@
         0
       ],
       "parameters": {
-        "jsCode": "const plan=$('Рассчитать и распределить').item.json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return [{json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'f7f88870-6888-4e6f-a8b1-a486eef42387'},properties}}}];"
+        "jsCode": "const plan=$('Рассчитать и распределить').item.json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return [{json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c'},properties}}}];"
       }
     },
     {

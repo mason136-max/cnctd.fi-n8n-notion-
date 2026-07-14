@@ -1,17 +1,17 @@
 import fs from 'node:fs';
 
 const departments = [
-  ['Стратегия','1d774f37-52ad-40cb-ad4b-629b0b29dfc2'],
-  ['Финансы','4d5a5ac4-f3da-40cd-ab81-fd4551f15f75'],
-  ['Юридические','b4277f33-a0d4-443c-bf7f-db7476d3ab58'],
-  ['Продажи','3aec96aa-784d-4ab4-a041-d8798dccd4ba'],
-  ['Маркетинг','3e6a0db0-e97c-4f6e-a0bf-44a3f60286c6'],
-  ['Продукты','1dc933f5-dcc3-4a5f-beb8-ebdee4c74602'],
-  ['Проекты','08251fe1-1f47-45a1-87a0-22572b50418e'],
-  ['Команда','f5e95fe6-2955-4ffb-891d-8d22d94b38a5'],
-  ['Операционка','2f2a74a5-b27c-4a1e-99b5-99e9f9f69560'],
+  ['Стратегия','3aa031fa-b83f-4f5e-9146-3f7ec1d3def5'],
+  ['Финансы','070cbcdb-2d03-47c0-9953-42919515aa73'],
+  ['Юридические','6a50fc10-8a28-4b7f-9aa5-b6838116980b'],
+  ['Продажи','b6c3224c-def1-40e8-ad61-fe6d1230ba78'],
+  ['Маркетинг','c9c4834e-bd41-4dfe-b7f2-217cd4a894be'],
+  ['Продукты','a497c56e-993b-4dcd-b935-ab9a207075ec'],
+  ['Проекты','5c5a9a29-4fa4-4446-90cd-4d1fcb0da63a'],
+  ['Команда','5f690d5e-d056-44ca-b716-eeab25b872fa'],
+  ['Операционка','d2aaea6b-ac4e-48fb-91a7-6910c5bc904e'],
 ];
-const dispatcher='f7f88870-6888-4e6f-a8b1-a486eef42387';
+const dispatcher='5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c';
 const nodes=[]; const connections={};
 const add=(n)=>nodes.push(n);
 add({id:'trigger',name:'Каждый день 06:00',type:'n8n-nodes-base.scheduleTrigger',typeVersion:1.2,position:[0,0],parameters:{rule:{interval:[{field:'cronExpression',expression:'0 6 * * *'}]}}});
