@@ -628,7 +628,8 @@
         0
       ],
       "parameters": {
-        "jsCode": "const g=$('Сформировать план сотрудников').item.json;const id=$json.results?.[0]?.id;const rt=v=>[{type:'text',text:{content:String(v)}}];const properties={'Задача':{title:rt(g.category+' — '+g.owner)},'День':{select:{name:g.day}},'Категория':{multi_select:[{name:g.category}]},'Исполнитель':{rich_text:rt(g.owner)},'Ключ планирования':{rich_text:rt(g.key)},'Неделя':{rich_text:rt(g.week)},'Автоматически':{checkbox:true},'Статус':{select:{name:'Запланировано'}},'Приоритет':{select:{name:g.priority}},'Срок':{date:{start:g.date}},'Комментарий':{rich_text:rt(g.comment)}};if(g.personId)properties['Ответственный']={people:[{id:g.personId}]};return[{json:{method:id?'PATCH':'POST',url:id?'https://api.notion.com/v1/pages/'+id:'https://api.notion.com/v1/pages',body:id?{properties}:{parent:{database_id:g.db},properties}}}]"
+        "mode": "runOnceForEachItem",
+        "jsCode": "const g=$('Сформировать план сотрудников').all()[$itemIndex].json;const id=$json.results?.[0]?.id;const rt=v=>[{type:'text',text:{content:String(v)}}];const properties={'Задача':{title:rt(g.category+' — '+g.owner)},'День':{select:{name:g.day}},'Категория':{multi_select:[{name:g.category}]},'Исполнитель':{rich_text:rt(g.owner)},'Ключ планирования':{rich_text:rt(g.key)},'Неделя':{rich_text:rt(g.week)},'Автоматически':{checkbox:true},'Статус':{select:{name:'Запланировано'}},'Приоритет':{select:{name:g.priority}},'Срок':{date:{start:g.date}},'Комментарий':{rich_text:rt(g.comment)}};if(g.personId)properties['Ответственный']={people:[{id:g.personId}]};return[{json:{method:id?'PATCH':'POST',url:id?'https://api.notion.com/v1/pages/'+id:'https://api.notion.com/v1/pages',body:id?{properties}:{parent:{database_id:g.db},properties}}}]"
       }
     },
     {

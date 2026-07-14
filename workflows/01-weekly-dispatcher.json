@@ -584,7 +584,8 @@
         0
       ],
       "parameters": {
-        "jsCode": "const plan=$('Рассчитать и распределить').item.json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return [{json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c'},properties}}}];"
+        "mode": "runOnceForEachItem",
+        "jsCode": "const plan=$('Рассчитать и распределить').all()[$itemIndex].json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return [{json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c'},properties}}}];"
       }
     },
     {
