@@ -5,6 +5,8 @@
 ## Готово
 
 - `workflows/01-weekly-dispatcher.json` — сканирование 9 отделов, расчёт нагрузки, балансировка недели и обновление Notion Dispatcher.
+- `workflows/02-dispatcher-event-journal.json` — ежедневный неизменяемый снимок диспетчера в журнал событий.
+- `workflows/03-weekly-analytics.json` — недельная аналитика и сравнение с предыдущей неделей на основе журнала.
 - `docs/INSTALL-RU.md` — пошаговая ручная установка в n8n.
 
 ## Архитектурный принцип

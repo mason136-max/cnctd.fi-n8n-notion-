@@ -1,0 +1,237 @@
+{
+  "name": "CNCTD OS — Dispatcher Event Journal v1",
+  "nodes": [
+    {
+      "id": "s1",
+      "name": "Ежедневно 06:15",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "15 6 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Читать диспетчер",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Подготовить снимки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const rows=$json.results||[];const now=new Date();const day=now.toISOString().slice(0,10);const d=new Date(now);const wd=(d.getDay()+6)%7;d.setDate(d.getDate()-wd);const week=d.toISOString().slice(0,10);const text=p=>p?.rich_text?.map(x=>x.plain_text).join('')||'';const title=p=>p?.title?.map(x=>x.plain_text).join('')||'';return rows.map(r=>{const p=r.properties;const weekday=title(p['День']);return{json:{snapshotDate:now.toISOString(),week,weekday,key:day+'|'+weekday,event:'Снимок '+day+' — '+weekday,categories:(p['Категории']?.multi_select||[]).map(x=>x.name),open:p['Открытых задач']?.number||0,urgent:p['Срочных задач']?.number||0,overdue:p['Просроченных']?.number||0,index:p['Индекс нагрузки']?.number||0,level:p['Уровень нагрузки']?.select?.name||'🟢 Низкая',bar:text(p['Шкала нагрузки']),nearest:p['Ближайший дедлайн']?.date?.start||null,summary:text(p['Сводка']),source:r.url,execution:String($execution.id)}}})"
+      }
+    },
+    {
+      "id": "s4",
+      "name": "Проверить ключ снимка",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/daa0be3f-59ce-4761-8625-43419d47c7d7/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\"page_size\":1,\"filter\":{\"property\":\"Ключ снимка\",\"rich_text\":{\"equals\":\"{{$json.key}}\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "s5",
+      "name": "Создать только новый снимок",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        0
+      ],
+      "parameters": {
+        "jsCode": "if(($json.results||[]).length)return[];const s=$('Подготовить снимки').item.json;const rt=v=>[{type:'text',text:{content:String(v)}}];const properties={'Событие':{title:rt(s.event)},'Дата снимка':{date:{start:s.snapshotDate}},'Неделя':{rich_text:rt(s.week)},'День':{select:{name:s.weekday}},'Категории':{multi_select:s.categories.map(name=>({name}))},'Открытых задач':{number:s.open},'Срочных задач':{number:s.urgent},'Просроченных':{number:s.overdue},'Индекс нагрузки':{number:s.index},'Уровень нагрузки':{select:{name:s.level}},'Шкала нагрузки':{rich_text:rt(s.bar)},'Сводка':{rich_text:rt(s.summary)},'ID запуска':{rich_text:rt(s.execution)},'Ключ снимка':{rich_text:rt(s.key)},'Источник':{url:s.source},'Ближайший дедлайн':{date:s.nearest?{start:s.nearest}:null}};return[{json:{parent:{database_id:'daa0be3f-59ce-4761-8625-43419d47c7d7'},properties}}]"
+      }
+    },
+    {
+      "id": "s6",
+      "name": "Записать в журнал",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1300,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Ежедневно 06:15": {
+      "main": [
+        [
+          {
+            "node": "Читать диспетчер",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Читать диспетчер": {
+      "main": [
+        [
+          {
+            "node": "Подготовить снимки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подготовить снимки": {
+      "main": [
+        [
+          {
+            "node": "Проверить ключ снимка",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проверить ключ снимка": {
+      "main": [
+        [
+          {
+            "node": "Создать только новый снимок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Создать только новый снимок": {
+      "main": [
+        [
+          {
+            "node": "Записать в журнал",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Kiev",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "active": false,
+  "tags": []
+}
