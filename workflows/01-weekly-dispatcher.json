@@ -64,30 +64,15 @@
     {
       "id": "tag0",
       "name": "Метка: Стратегия",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         -480
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Стратегия"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Стратегия', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -133,30 +118,15 @@
     {
       "id": "tag1",
       "name": "Метка: Финансы",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         -360
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Финансы"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Финансы', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -202,30 +172,15 @@
     {
       "id": "tag2",
       "name": "Метка: Юридические",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         -240
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Юридические"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Юридические', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -271,30 +226,15 @@
     {
       "id": "tag3",
       "name": "Метка: Продажи",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         -120
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Продажи"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Продажи', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -340,30 +280,15 @@
     {
       "id": "tag4",
       "name": "Метка: Маркетинг",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         0
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Маркетинг"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Маркетинг', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -409,30 +334,15 @@
     {
       "id": "tag5",
       "name": "Метка: Продукты",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         120
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Продукты"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Продукты', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -478,30 +388,15 @@
     {
       "id": "tag6",
       "name": "Метка: Проекты",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         240
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Проекты"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Проекты', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -547,30 +442,15 @@
     {
       "id": "tag7",
       "name": "Метка: Команда",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         360
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Команда"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Команда', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -616,30 +496,15 @@
     {
       "id": "tag8",
       "name": "Метка: Операционка",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         510,
         480
       ],
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "dept",
-              "name": "department",
-              "type": "string",
-              "value": "Операционка"
-            },
-            {
-              "id": "rows",
-              "name": "rows",
-              "type": "array",
-              "value": "={{ $json.results }}"
-            }
-          ]
-        },
-        "options": {}
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Операционка', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -666,7 +531,7 @@
         0
       ],
       "parameters": {
-        "jsCode": "const input=$input.all().map(i=>i.json);\nconst days=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];\nconst now=new Date(); now.setHours(0,0,0,0);\nconst monday=new Date(now); const wd=(now.getDay()+6)%7; monday.setDate(now.getDate()-wd);\nconst dateOf=i=>{const d=new Date(monday);d.setDate(monday.getDate()+i);return d};\nconst stats=input.map(({department,rows=[]})=>{let open=rows.length,urgent=0,overdue=0,nearest=null,medium=0;for(const p of rows){const pr=p.properties?.['Приоритет']?.select?.name||'';const due=p.properties?.['Дедлайн']?.date?.start;if(pr.includes('Высокий'))urgent++;if(pr==='Средний')medium++;if(due){const d=new Date(due);if(d<now)overdue++;if(!nearest||d<nearest)nearest=d}}const score=open+urgent*3+medium+overdue*5;return{department,open,urgent,overdue,nearest,score}}).filter(x=>x.open>0).sort((a,b)=>b.score-a.score);\nconst buckets=days.map((day,i)=>({day,i,cats:[],score:0,open:0,urgent:0,overdue:0,nearest:null}));\nfor(const s of stats){let allowed=[0,1,2,3,4];if(s.nearest&&s.nearest<dateOf(5)) allowed=allowed.filter(i=>dateOf(i)<=s.nearest);if(!allowed.length&&s.nearest&&s.nearest<dateOf(7))allowed=[5,6].filter(i=>dateOf(i)<=s.nearest);if(!allowed.length)allowed=[0,1,2,3,4];const b=allowed.map(i=>buckets[i]).sort((a,b)=>a.score-b.score||a.i-b.i)[0];b.cats.push(s.department);b.score+=s.score;b.open+=s.open;b.urgent+=s.urgent;b.overdue+=s.overdue;if(s.nearest&&(!b.nearest||s.nearest<b.nearest))b.nearest=s.nearest;}\nreturn buckets.map(b=>{const index=Math.min(100,Math.round(b.score*5));const filled=Math.min(10,Math.ceil(index/10));const level=index<35?'🟢 Низкая':index<70?'🟡 Средняя':'🔴 Высокая';return{json:{day:b.day,categories:b.cats,open:b.open,urgent:b.urgent,overdue:b.overdue,nearest:b.nearest?b.nearest.toISOString().slice(0,10):null,index,level,bar:'█'.repeat(filled)+'░'.repeat(10-filled),summary:b.cats.length?b.cats.join(', ')+': '+b.open+' открытых, '+b.overdue+' просроченных':'Нет активных направлений',updated:new Date().toISOString()}}});"
+        "jsCode": "const input=$input.all().map(i=>i.json);\nconst days=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];\nconst now=new Date(); now.setHours(0,0,0,0);\nconst monday=new Date(now); const wd=(now.getDay()+6)%7; monday.setDate(now.getDate()-wd);\nconst dateOf=i=>{const d=new Date(monday);d.setDate(monday.getDate()+i);return d};\nconst stats=input.map(({department,rows})=>{rows=Array.isArray(rows)?rows:[];let open=rows.length,urgent=0,overdue=0,nearest=null,medium=0;for(const p of rows){const pr=p.properties?.['Приоритет']?.select?.name||'';const due=p.properties?.['Дедлайн']?.date?.start;if(pr.includes('Высокий'))urgent++;if(pr==='Средний')medium++;if(due){const d=new Date(due);if(d<now)overdue++;if(!nearest||d<nearest)nearest=d}}const score=open+urgent*3+medium+overdue*5;return{department,open,urgent,overdue,nearest,score}}).filter(x=>x.open>0).sort((a,b)=>b.score-a.score);\nconst buckets=days.map((day,i)=>({day,i,cats:[],score:0,open:0,urgent:0,overdue:0,nearest:null}));\nfor(const s of stats){let allowed=[0,1,2,3,4];if(s.nearest&&s.nearest<dateOf(5)) allowed=allowed.filter(i=>dateOf(i)<=s.nearest);if(!allowed.length&&s.nearest&&s.nearest<dateOf(7))allowed=[5,6].filter(i=>dateOf(i)<=s.nearest);if(!allowed.length)allowed=[0,1,2,3,4];const b=allowed.map(i=>buckets[i]).sort((a,b)=>a.score-b.score||a.i-b.i)[0];b.cats.push(s.department);b.score+=s.score;b.open+=s.open;b.urgent+=s.urgent;b.overdue+=s.overdue;if(s.nearest&&(!b.nearest||s.nearest<b.nearest))b.nearest=s.nearest;}\nreturn buckets.map(b=>{const index=Math.min(100,Math.round(b.score*5));const filled=Math.min(10,Math.ceil(index/10));const level=index<35?'🟢 Низкая':index<70?'🟡 Средняя':'🔴 Высокая';return{json:{day:b.day,categories:b.cats,open:b.open,urgent:b.urgent,overdue:b.overdue,nearest:b.nearest?b.nearest.toISOString().slice(0,10):null,index,level,bar:'█'.repeat(filled)+'░'.repeat(10-filled),summary:b.cats.length?b.cats.join(', ')+': '+b.open+' открытых, '+b.overdue+' просроченных':'Нет активных направлений',updated:new Date().toISOString()}}});"
       }
     },
     {
