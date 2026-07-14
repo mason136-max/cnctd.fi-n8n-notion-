@@ -1,0 +1,1068 @@
+{
+  "name": "CNCTD OS — Weekly Dispatcher v1",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Каждый день 06:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 6 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "q0",
+      "name": "Читать: Стратегия",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -480
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/1d774f37-52ad-40cb-ad4b-629b0b29dfc2/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag0",
+      "name": "Метка: Стратегия",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        -480
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Стратегия"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q1",
+      "name": "Читать: Финансы",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -360
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/4d5a5ac4-f3da-40cd-ab81-fd4551f15f75/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag1",
+      "name": "Метка: Финансы",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        -360
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Финансы"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q2",
+      "name": "Читать: Юридические",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/b4277f33-a0d4-443c-bf7f-db7476d3ab58/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag2",
+      "name": "Метка: Юридические",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        -240
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Юридические"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q3",
+      "name": "Читать: Продажи",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -120
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/3aec96aa-784d-4ab4-a041-d8798dccd4ba/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag3",
+      "name": "Метка: Продажи",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        -120
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Продажи"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q4",
+      "name": "Читать: Маркетинг",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/3e6a0db0-e97c-4f6e-a0bf-44a3f60286c6/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag4",
+      "name": "Метка: Маркетинг",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        0
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Маркетинг"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q5",
+      "name": "Читать: Продукты",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        120
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/1dc933f5-dcc3-4a5f-beb8-ebdee4c74602/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag5",
+      "name": "Метка: Продукты",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        120
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Продукты"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q6",
+      "name": "Читать: Проекты",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/08251fe1-1f47-45a1-87a0-22572b50418e/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag6",
+      "name": "Метка: Проекты",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        240
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Проекты"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q7",
+      "name": "Читать: Команда",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        360
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/f5e95fe6-2955-4ffb-891d-8d22d94b38a5/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag7",
+      "name": "Метка: Команда",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        360
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Команда"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "q8",
+      "name": "Читать: Операционка",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        480
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/2f2a74a5-b27c-4a1e-99b5-99e9f9f69560/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"page_size\":100,\"filter\":{\"property\":\"Статус\",\"select\":{\"does_not_equal\":\"Готово\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tag8",
+      "name": "Метка: Операционка",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        510,
+        480
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dept",
+              "name": "department",
+              "type": "string",
+              "value": "Операционка"
+            },
+            {
+              "id": "rows",
+              "name": "rows",
+              "type": "array",
+              "value": "={{ $json.results }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "merge",
+      "name": "Собрать отделы",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "numberInputs": 9,
+        "mode": "append"
+      }
+    },
+    {
+      "id": "calc",
+      "name": "Рассчитать и распределить",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const input=$input.all().map(i=>i.json);\nconst days=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];\nconst now=new Date(); now.setHours(0,0,0,0);\nconst monday=new Date(now); const wd=(now.getDay()+6)%7; monday.setDate(now.getDate()-wd);\nconst dateOf=i=>{const d=new Date(monday);d.setDate(monday.getDate()+i);return d};\nconst stats=input.map(({department,rows=[]})=>{let open=rows.length,urgent=0,overdue=0,nearest=null,medium=0;for(const p of rows){const pr=p.properties?.['Приоритет']?.select?.name||'';const due=p.properties?.['Дедлайн']?.date?.start;if(pr.includes('Высокий'))urgent++;if(pr==='Средний')medium++;if(due){const d=new Date(due);if(d<now)overdue++;if(!nearest||d<nearest)nearest=d}}const score=open+urgent*3+medium+overdue*5;return{department,open,urgent,overdue,nearest,score}}).filter(x=>x.open>0).sort((a,b)=>b.score-a.score);\nconst buckets=days.map((day,i)=>({day,i,cats:[],score:0,open:0,urgent:0,overdue:0,nearest:null}));\nfor(const s of stats){let allowed=[0,1,2,3,4];if(s.nearest&&s.nearest<dateOf(5)) allowed=allowed.filter(i=>dateOf(i)<=s.nearest);if(!allowed.length&&s.nearest&&s.nearest<dateOf(7))allowed=[5,6].filter(i=>dateOf(i)<=s.nearest);if(!allowed.length)allowed=[0,1,2,3,4];const b=allowed.map(i=>buckets[i]).sort((a,b)=>a.score-b.score||a.i-b.i)[0];b.cats.push(s.department);b.score+=s.score;b.open+=s.open;b.urgent+=s.urgent;b.overdue+=s.overdue;if(s.nearest&&(!b.nearest||s.nearest<b.nearest))b.nearest=s.nearest;}\nreturn buckets.map(b=>{const index=Math.min(100,Math.round(b.score*5));const filled=Math.min(10,Math.ceil(index/10));const level=index<35?'🟢 Низкая':index<70?'🟡 Средняя':'🔴 Высокая';return{json:{day:b.day,categories:b.cats,open:b.open,urgent:b.urgent,overdue:b.overdue,nearest:b.nearest?b.nearest.toISOString().slice(0,10):null,index,level,bar:'█'.repeat(filled)+'░'.repeat(10-filled),summary:b.cats.length?b.cats.join(', ')+': '+b.open+' открытых, '+b.overdue+' просроченных':'Нет активных направлений',updated:new Date().toISOString()}}});"
+      }
+    },
+    {
+      "id": "find",
+      "name": "Найти строку дня",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/f7f88870-6888-4e6f-a8b1-a486eef42387/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\"page_size\":1,\"filter\":{\"property\":\"День\",\"title\":{\"equals\":\"{{$json.day}}\"}}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "payload",
+      "name": "Подготовить upsert",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1290,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const plan=$('Рассчитать и распределить').item.json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return [{json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'f7f88870-6888-4e6f-a8b1-a486eef42387'},properties}}}];"
+      }
+    },
+    {
+      "id": "upsert",
+      "name": "Обновить диспетчер",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        0
+      ],
+      "parameters": {
+        "method": "={{ $json.method }}",
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json.body) }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Каждый день 06:00": {
+      "main": [
+        [
+          {
+            "node": "Читать: Стратегия",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Финансы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Юридические",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Продажи",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Маркетинг",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Продукты",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Проекты",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Команда",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Читать: Операционка",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Читать: Стратегия": {
+      "main": [
+        [
+          {
+            "node": "Метка: Стратегия",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Стратегия": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Читать: Финансы": {
+      "main": [
+        [
+          {
+            "node": "Метка: Финансы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Финансы": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Читать: Юридические": {
+      "main": [
+        [
+          {
+            "node": "Метка: Юридические",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Юридические": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Читать: Продажи": {
+      "main": [
+        [
+          {
+            "node": "Метка: Продажи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Продажи": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Читать: Маркетинг": {
+      "main": [
+        [
+          {
+            "node": "Метка: Маркетинг",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Маркетинг": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Читать: Продукты": {
+      "main": [
+        [
+          {
+            "node": "Метка: Продукты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Продукты": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Читать: Проекты": {
+      "main": [
+        [
+          {
+            "node": "Метка: Проекты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Проекты": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Читать: Команда": {
+      "main": [
+        [
+          {
+            "node": "Метка: Команда",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Команда": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Читать: Операционка": {
+      "main": [
+        [
+          {
+            "node": "Метка: Операционка",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка: Операционка": {
+      "main": [
+        [
+          {
+            "node": "Собрать отделы",
+            "type": "main",
+            "index": 8
+          }
+        ]
+      ]
+    },
+    "Собрать отделы": {
+      "main": [
+        [
+          {
+            "node": "Рассчитать и распределить",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Рассчитать и распределить": {
+      "main": [
+        [
+          {
+            "node": "Найти строку дня",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Найти строку дня": {
+      "main": [
+        [
+          {
+            "node": "Подготовить upsert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подготовить upsert": {
+      "main": [
+        [
+          {
+            "node": "Обновить диспетчер",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Kiev",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "active": false,
+  "versionId": "f2860130-8765-4aa7-9400-294793cda001",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
