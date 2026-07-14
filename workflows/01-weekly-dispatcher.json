@@ -72,7 +72,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Стратегия', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Стратегия', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -126,7 +126,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Финансы', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Финансы', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -180,7 +180,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Юридические', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Юридические', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -234,7 +234,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Продажи', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Продажи', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -288,7 +288,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Маркетинг', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Маркетинг', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -342,7 +342,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Продукты', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Продукты', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -396,7 +396,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Проекты', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Проекты', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -450,7 +450,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Команда', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Команда', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -504,7 +504,7 @@
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const response = $input.first().json;\nreturn [{ json: { department: 'Операционка', rows: Array.isArray(response.results) ? response.results : [] } }];"
+        "jsCode": "const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;\nreturn [{ json: { department: 'Операционка', rows: Array.isArray(response.results) ? response.results : [] } }];"
       }
     },
     {
@@ -585,7 +585,7 @@
       ],
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const plan=$('Рассчитать и распределить').all()[$itemIndex].json;const existing=$json.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return {json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c'},properties}}};"
+        "jsCode": "const plan=$('Рассчитать и распределить').all()[$itemIndex].json;const raw=$json;const bytes=(raw?._readableState?.buffer||[]).flatMap(x=>x?.data||[]);const response=raw?.results?raw:bytes.length?JSON.parse(new TextDecoder().decode(Uint8Array.from(bytes))):typeof raw?.body==='string'?JSON.parse(raw.body):raw?.body||raw;const existing=response.results?.[0]?.id;const rich=v=>[{type:'text',text:{content:String(v)}}];const properties={'День':{title:rich(plan.day)},'Категории':{multi_select:plan.categories.map(name=>({name}))},'Индекс нагрузки':{number:plan.index},'Уровень нагрузки':{select:{name:plan.level}},'Шкала нагрузки':{rich_text:rich(plan.bar)},'Открытых задач':{number:plan.open},'Срочных задач':{number:plan.urgent},'Просроченных':{number:plan.overdue},'Сводка':{rich_text:rich(plan.summary)},'Последнее обновление':{date:{start:plan.updated}},'Ближайший дедлайн':{date:plan.nearest?{start:plan.nearest}:null}};return {json:{method:existing?'PATCH':'POST',url:existing?'https://api.notion.com/v1/pages/'+existing:'https://api.notion.com/v1/pages',body:existing?{properties}:{parent:{database_id:'5c523f23-df7a-4a2f-b5f3-cf682f3fcf3c'},properties}}};"
       }
     },
     {
